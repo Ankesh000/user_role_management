@@ -1,4 +1,4 @@
-// routes/userRoutes.ts
+// routes/adminRoutes.ts
 import { Router } from 'express';
 import constants from '../../utils/constant'
 import {registerAdmin ,adminLogin ,getAllUsers} from '../controllers/adminController';
