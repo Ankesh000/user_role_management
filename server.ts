@@ -23,4 +23,4 @@ sequelize.sync()
   .catch((err) => {
     console.error('Error syncing the database:', err);
   });
-  //updated
+  //updated commit
