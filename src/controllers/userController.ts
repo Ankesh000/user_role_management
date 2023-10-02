@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { Request, Response } from 'express';
 import { create,login } from '../services/userServices';
-
+import { updatedUser } from '../services/userServices';
 
 //========================================create user ===========================================================//
 
@@ -70,7 +70,33 @@ export const userLogin = async (req: Request, res: Response) => {
 
 //===========================================================================================================//
 
+export const  updateUser= async (req:Request, res:Response) => {
+  const updatedData = req.body;
+  try {
+    const userId = req.userId;
+console.log("getinng",userId)
+    const user = await updatedUser(userId, updatedData);
 
+    if (user) {
+      return res.status(StatusCodes.OK).json({
+        status: StatusCodes.OK,
+        data: user,
+        message: 'User updated successfully',
+      });
+    } else {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        status: StatusCodes.NOT_FOUND,
+        message: 'User not found',
+      });
+    }
+  } catch (error) {
+    console.error('Error updating user:', error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      status: StatusCodes.INTERNAL_SERVER_ERROR,
+      message: 'Failed to update user',
+    });
+  }
+}
 
 
 

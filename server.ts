@@ -24,3 +24,6 @@ sequelize.sync()
     console.error('Error syncing the database:', err);
   });
   //updated commit
+  // $ echo $PATH
+  // $PATH="/c/Program Files/PostgreSQL/16/bin:$PATH"
+  // $pg_ctl.exe start -D "C:\Program Files\PostgreSQL\16\data"

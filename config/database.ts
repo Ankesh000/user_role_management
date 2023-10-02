@@ -7,7 +7,7 @@ import { Sequelize } from 'sequelize';
 const sequelize = new Sequelize(process.DB_NAME, process.DB_USER,  process.DB_PASSWORD , {
     host:process.DB_HOST,
     dialect: 'postgres',
-    port: 5000, 
+    port: 5432, 
     username: process.DB_USER, 
     password: process.DB_PASSWORD,
     database:process.DB_NAME,

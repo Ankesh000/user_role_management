@@ -2,6 +2,7 @@ import User from '../models/userModel';
 import bcrypt from 'bcrypt';
 import { generateToken } from '../../config/jwt';
 import { StatusCodes } from 'http-status-codes';
+import { response } from 'express';
 const saltRounds = 10;
 
 //========================================CREATE USER SERVICE=========================================================//
@@ -65,3 +66,25 @@ export const login = async (email: string, password: string)=> {
   //===================================================================================================//
   
 
+  export const updatedUser=async(userId: number, updatedData:any)=>{
+    try {
+      const user = await User.findByPk(userId);
+  
+      if (!user) {
+        return {
+          status: StatusCodes.NOT_FOUND,
+          message: 'User not found',
+        };
+      }
+  
+      // Update user details
+      await user.update(updatedData);
+  
+      return user;
+    } catch (error: any) {
+      return {
+          status: StatusCodes.INTERNAL_SERVER_ERROR,
+          message: error.message,
+      };
+  }
+  }
